@@ -1,0 +1,33 @@
+.main{
+    min-height: 90.5vh;
+    display: flex;
+    align-items: center;
+    background-image: url(".././background1.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.title{
+    font-size:95px;
+}
+
+.sub-title{
+    font-size:25px;
+    padding-top: 10px;
+}
+
+.intro-text{
+    display: flex;
+    justify-content: center;
+    color: rgb(25, 134, 211);
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 500px;
+    margin-bottom: 600px;
+}
+
+.intro-text p{
+    display: flex;
+    justify-content: center;
+}
