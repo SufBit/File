@@ -2,13 +2,14 @@
     min-height: 90.5vh;
     display: flex;
     align-items: center;
-    background-image: url(".././background1.jpg");
+    background-image: url("../../background1.jpg");
     background-position: center;
     background-size: cover;
 }
 
 .title{
     font-size:95px;
+    font-weight: bold;
 }
 
 .sub-title{
@@ -23,11 +24,29 @@
     flex-direction: column;
     align-items: center;
     margin-left: auto;
-    margin-right: 500px;
+    margin-right: auto;
     margin-bottom: 600px;
 }
 
 .intro-text p{
     display: flex;
     justify-content: center;
+}
+
+@media only screen and (max-width:768px){
+
+    .intro-text{
+        display: flex;
+        justify-content: center;
+        color: rgb(25, 134, 211);
+        flex-direction: column;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 350px;
+    }
+
+    .title{
+        font-size:30px;
+    }
 }
