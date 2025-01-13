@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Row } from 'react-bootstrap'
 import './MainScreen.css'
 
-export const MainScreen = ({title, children}) => {
+export const MainScreen = ({title, fontColor = "#000", children}) => {
   return (
     <div className='mainback'>
         <Container>
@@ -10,7 +10,7 @@ export const MainScreen = ({title, children}) => {
                 <div className='page'>
                     {title && (
                         <>
-                            <h1 className="heading">{title}</h1>
+                            <h1 className="heading" style={{color: fontColor}}>{title}</h1>
                             <hr />
                         </>
                     )}

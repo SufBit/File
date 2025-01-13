@@ -1,0 +1,66 @@
+.custom-form{
+    background-color: #127ba3;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.custom-form * {
+    color:#FFA500;
+}
+
+.custom-form button{
+
+    background-color: #FFA500;
+    color: #127ba3;
+    border: none;
+    padding: 10px 20px;
+}
+
+.custom-input {
+    width: 110%; /* Ensures consistent width across inputs */
+    height: 45px; /* Ensures consistent height */
+    font-size: 1rem; /* Ensures consistent font size */
+    padding: 10px; /* Adds spacing inside the input box */
+    border: 1px solid #FFA500; /* Matches default Bootstrap border */
+    border-radius: 5px; /* Optional: for rounded corners */
+    box-sizing: border-box; /* Ensures padding doesn’t affect size */
+  }
+  
+  .custom-input:focus {
+    border-color: #80bdff; /* Matches Bootstrap's focus color */
+    outline: 0; /* Removes default outline */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Adds a focused shadow */
+  }
+
+  /* Centering the row */
+.centered-row {
+    display: flex;
+    justify-content: center; /* Horizontally centers the content */
+    align-items: center;    /* Vertically centers the content */
+    min-height: 100px;      /* Optional: Ensures enough space for centering */
+  }
+
+
+  .centered-row .centered-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Styling the link */
+  .hover-link {
+    color: inherit;         /* Uses the default text color */
+    text-decoration: none;  /* Removes underline */
+    font-weight: bold;      /* Makes the text bold */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+  }
+
+  .hover-link:hover {
+    color: orange; /* Changes the color on hover */
+  }
+  
+

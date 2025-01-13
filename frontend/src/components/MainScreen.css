@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 .mainback{
-    min-height: 93vh;
+    min-height: 98vh;
     display: flex;
     padding: 10px 0;
 }

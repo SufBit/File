@@ -1,12 +1,29 @@
 import React from 'react'
 import { Container, Nav, Navbar, NavDropdown, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../actions/userActions';
+
 
 export const Header = () => {
   const customStyles = {
     color: '#FFA500',
     fontWeight: 'bold',
   };
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    navigate('/');
+  }
+
   return (
     <Navbar bg ="primary" expand="lg" variant="dark" className="bg-body-tertiary">
       <Container>
@@ -31,13 +48,17 @@ export const Header = () => {
             navbarScroll
           >
             <Nav.Link href="/mynotes" style={customStyles}>My Notes</Nav.Link>
-            <NavDropdown title={<span style={customStyles}>Sufyan Arshad</span>} id="navbarScrollingDropdown">
+            {userInfo ? (
+            <NavDropdown title={<span style={customStyles} > {userInfo ? userInfo.name : 'Profile'}</span>} id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">My Profile</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
+              <NavDropdown.Item onClick={logoutHandler} href="#action5">
                 Logout
               </NavDropdown.Item>
             </NavDropdown>
+          ) : (
+              <Nav.Link href="/login" style={customStyles}>Login</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
