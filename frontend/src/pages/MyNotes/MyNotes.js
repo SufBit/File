@@ -1,6 +1,6 @@
 import React, { useEffect} from 'react'
 import { MainScreen } from '../../components/MainScreen'
-import { Link} from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import { Badge, Button, Card } from 'react-bootstrap'
 import Accordion from 'react-bootstrap/Accordion';
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,23 +16,29 @@ export const MyNotes = () => {
     const noteList = useSelector(state => state.noteList);
     const { loading, notes, error } = noteList;
 
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo } = userLogin;
+
     const deleteHandler = (id) => {
         if(window.confirm('Are you sure?')){
             // Delete note
 
         }
     }
+    const history = useNavigate();
 
     useEffect(() => {
-
         dispatch(listNotes());
+        if (!userInfo) {
+            history('/');
+        }
+    }, [dispatch, history, userInfo]);
 
-    }, [dispatch]);
 
-
+    console.log(userInfo.name);
   return (
-    <MainScreen title="Welcome to Notes..">
-        <Link to='createnote'>
+    <MainScreen title={`Welcome Back ${userInfo.name} ..`}>
+        <Link to='/createnote'>
             <Button style={{marginLeft: 10, marginBottom: 6}} size='lg'>
                 Create a New Note
             </Button>
@@ -74,7 +80,10 @@ export const MyNotes = () => {
                                     {note.content}
                                 </p>
                                 <footer className="blockquote-footer">
-                                Created on - date
+                                Created on {""}
+                                <cite title="Source Title">
+                                    {note.createdAt.substring(0, 10)}
+                                </cite>
                                 </footer>
                             </blockquote>
                         </Card.Body>

@@ -21,6 +21,7 @@
     "mongodb": "5.5",
     "mongoose": "^8.8.3",
     "mongose": "^0.0.2-security",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "react-markdown": "^9.0.3"
   }
 }

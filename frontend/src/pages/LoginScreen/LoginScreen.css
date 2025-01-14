@@ -21,8 +21,9 @@
 }
 
 .custom-input {
-    width: 110%; /* Ensures consistent width across inputs */
-    height: 45px; /* Ensures consistent height */
+    width: 100%; /* Ensures consistent width across inputs */
+    height: 45px !important; /* Ensures consistent height */
+    width: 240px !important;
     font-size: 1rem; /* Ensures consistent font size */
     padding: 10px; /* Adds spacing inside the input box */
     border: 1px solid #FFA500; /* Matches default Bootstrap border */
