@@ -72,16 +72,14 @@ function CreateNote() {
                 onChange={(e) => setContent(e.target.value)}
               />
             </Form.Group>
-            {content && typeof content === 'string' ? (
+             {/* Ensure content is a string before rendering */}
+            {content &&(
                 <Card>
                 <Card.Header>Note Preview</Card.Header>
                 <Card.Body>
-                    {console.log('Content before ReactMarkdown:', content)} {/* Debugging */}
                     <ReactMarkdown>{content}</ReactMarkdown>
                 </Card.Body>
                 </Card>
-            ) : (
-                <div>Invalid content type</div> // Fallback message
             )}
 
             <Form.Group controlId="category">
