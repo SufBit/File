@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import { MainScreen } from '../../components/MainScreen'
 import { Link} from 'react-router-dom'
 import { Badge, Button, Card } from 'react-bootstrap'
 import Accordion from 'react-bootstrap/Accordion';
-import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { listNotes } from '../../actions/notesActions'
+import {Loading} from '../../components/Loading'
+import { ErrorMessage } from '../../components/ErrorMessage'
 
 
 export const MyNotes = () => {
 
-    const [ notes, setNotes ] = useState([]) 
+    const dispatch = useDispatch();
+
+    const noteList = useSelector(state => state.noteList);
+    const { loading, notes, error } = noteList;
 
     const deleteHandler = (id) => {
         if(window.confirm('Are you sure?')){
@@ -17,32 +23,11 @@ export const MyNotes = () => {
         }
     }
 
-    const fetchNotes = async () => {
-        try{
-            const {data} = await axios.get('/api/notes')
-            setNotes(data) 
-        }
-        catch(error){
-            if(error.response){
-                console.log("Error Response:", error.response.data.message)
-                console.error("Status Code:", error.response.status);
-                console.error("Headers:", error.response.headers);
-            }
-            else if(error.request){
-                console.error("Error Request:", error.request)
-            }
-            else{
-                console.error('Error:', error.message)
-            }
-            console.error("Error Config:", error.config)
-        }
-    };
-
-    console.log(notes)
-
     useEffect(() => {
-        fetchNotes()
-      }, []);
+
+        dispatch(listNotes());
+
+    }, [dispatch]);
 
 
   return (
@@ -52,8 +37,10 @@ export const MyNotes = () => {
                 Create a New Note
             </Button>
         </Link>
+        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {loading && <Loading />}
         {
-            notes.map(note => {
+            notes?.map(note => {
                 return (
                     <Accordion defaultActiveKey="0" key = {note._id}>
                     <Accordion.Item key = {note._id}>
