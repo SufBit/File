@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { createNoteAction } from "../../actions/notesActions";
 import { Loading } from '../../components/Loading'
 import { ErrorMessage } from '../../components/ErrorMessage'
-import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom"; // Updated import for useNavigate
+import {marked} from 'marked';
 
 function CreateNote() {
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
   const [category, setCategory] = useState("");
 
   const dispatch = useDispatch();
@@ -45,6 +45,10 @@ function CreateNote() {
     navigate("/mynotes");
   };
 
+  const renderMarkdown = (markdown) => {
+    return { __html: marked(markdown) }; // Convert Markdown to HTML
+  };
+
   return (
     <MainScreen title="Create a Note">
       <Card>
@@ -73,15 +77,14 @@ function CreateNote() {
               />
             </Form.Group>
              {/* Ensure content is a string before rendering */}
-            {content &&(
-                <Card>
+             {content && (
+              <Card>
                 <Card.Header>Note Preview</Card.Header>
                 <Card.Body>
-                    <ReactMarkdown>{content}</ReactMarkdown>
+                <div dangerouslySetInnerHTML={renderMarkdown(content)} />
                 </Card.Body>
-                </Card>
+              </Card>
             )}
-
             <Form.Group controlId="category">
               <Form.Label>Category</Form.Label>
               <Form.Control
@@ -92,7 +95,7 @@ function CreateNote() {
               />
             </Form.Group>
             <div className="mt-3">
-                {loading && <Loading size={50}/>}
+                {loading && <Loading size={10000}/>}
                 <Button type="submit" variant="primary">
                 Create Note
                 </Button>

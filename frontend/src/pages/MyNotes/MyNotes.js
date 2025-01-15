@@ -19,6 +19,9 @@ export const MyNotes = () => {
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
 
+    const noteCreate = useSelector((state) => state.noteCreate);
+    const { success:successCreate } = noteCreate;
+
     const deleteHandler = (id) => {
         if(window.confirm('Are you sure?')){
             // Delete note
@@ -32,7 +35,7 @@ export const MyNotes = () => {
         if (!userInfo) {
             history('/');
         }
-    }, [dispatch, history, userInfo]);
+    }, [dispatch,successCreate, history, userInfo]);
 
 
     console.log(userInfo.name);

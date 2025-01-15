@@ -18,10 +18,14 @@
     "express": "^4.21.0",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
+    "markdown-to-jsx": "^7.7.3",
+    "marked": "^15.0.6",
     "mongodb": "5.5",
     "mongoose": "^8.8.3",
     "mongose": "^0.0.2-security",
     "nodemon": "^3.1.4",
-    "react-markdown": "^9.0.3"
+    "react-markdown": "^9.0.3",
+    "remark": "^15.0.1",
+    "remark-react": "^9.0.1"
   }
 }
