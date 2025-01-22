@@ -8,24 +8,30 @@ import  LoginScreen  from './pages/LoginScreen/LoginScreen.js';
 import RegisterPage from './pages/RegisterPage/RegisterPage.js';
 import CreateNote from './pages/CreateNote/CreateNote.js';
 import SingleNote from './pages/CreateNote/SingleNote.js';
+import { useState } from 'react';
 
-const App = () => (
+const App = () => {
+
+  const [search, setSearch] = useState("");
+  console.log(search);
   
-    <BrowserRouter>
-      <Header />
-      <main>
-        <Routes>
-          <Route path = '/' element={<LandingPage/>}/>
-          <Route path = '/login' element={<LoginScreen/>}/>
-          <Route path = '/register' element={<RegisterPage/>}/>
-          <Route path = '/createnote' element={<CreateNote/>}/>
-          <Route path = '/note/:id' element={<SingleNote/>}/> 
-          <Route path = '/mynotes' element={<MyNotes/>}/>
-        </Routes>
-      </main>
-      <Footer />
-    </BrowserRouter>
+    return (
+      <BrowserRouter>
+        <Header setSearch = {setSearch} />
+        <main>
+          <Routes>
+            <Route path = '/' element={<LandingPage/>}/>
+            <Route path = '/login' element={<LoginScreen/>}/>
+            <Route path = '/register' element={<RegisterPage/>}/>
+            <Route path = '/createnote' element={<CreateNote/>}/>
+            <Route path = '/note/:id' element={<SingleNote/>}/> 
+            <Route path = '/mynotes' element={<MyNotes search= {search}/>}/>
+          </Routes>
+        </main>
+        <Footer />
+      </BrowserRouter>
+    );
 
-);
+};
 
 export default App;

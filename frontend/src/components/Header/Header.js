@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../actions/userActions';
 
 
-export const Header = () => {
+export const Header = ({setSearch}) => {
   const customStyles = {
     color: '#FFA500',
     fontWeight: 'bold',
@@ -39,6 +39,7 @@ export const Header = () => {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                onChange={(e) => setSearch(e.target.value)}
               />
             </Form>
           </Nav>

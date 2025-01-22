@@ -7,9 +7,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listNotes } from '../../actions/notesActions'
 import {Loading} from '../../components/Loading'
 import { ErrorMessage } from '../../components/ErrorMessage'
+import { deleteNoteAction } from '../../actions/notesActions'
 
 
-export const MyNotes = () => {
+export const MyNotes = ({search}) => {
 
     const dispatch = useDispatch();
 
@@ -22,20 +23,27 @@ export const MyNotes = () => {
     const noteCreate = useSelector((state) => state.noteCreate);
     const { success:successCreate } = noteCreate;
 
-    const deleteHandler = (id) => {
-        if(window.confirm('Are you sure?')){
-            // Delete note
+    const noteUpdate = useSelector((state) => state.noteUpdate);
+    const { success: successUpdate } = noteUpdate;
 
-        }
-    }
+    const noteDelete = useSelector((state) => state.noteDelete);
+    const {loading: loadingDelete, error: errorDelete, success: successDelete } = noteDelete;
+
     const history = useNavigate();
+
+    const deleteHandler = (id) => {
+        if (window.confirm("Are you sure?")) {
+            dispatch(deleteNoteAction(id));
+          }
+          history("/mynotes");
+    }
 
     useEffect(() => {
         dispatch(listNotes());
         if (!userInfo) {
             history('/');
         }
-    }, [dispatch,successCreate, history, userInfo]);
+    }, [dispatch,successCreate, history, userInfo, successUpdate, successDelete]);
 
 
     console.log(userInfo.name);
@@ -46,10 +54,14 @@ export const MyNotes = () => {
                 Create a New Note
             </Button>
         </Link>
+        {errorDelete && <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>}
+        {loadingDelete && <Loading />}
         {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
         {loading && <Loading />}
         {
-            notes?.map(note => {
+            notes?.filter(filteredNote => (
+                filteredNote.title.toLowerCase().includes(search.toLowerCase())
+            )).map(note => {
                 return (
                     <Accordion defaultActiveKey="0" key = {note._id}>
                     <Accordion.Item key = {note._id}>
