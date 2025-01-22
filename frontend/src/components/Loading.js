@@ -1,7 +1,7 @@
 import React from 'react'
 import { Spinner } from 'react-bootstrap'
 
-export const Loading = ({size = 100}) => {
+export const Loading = ({size}) => {
   return (
     <div style={{display: "flex", 
                 justifyContent: "center",

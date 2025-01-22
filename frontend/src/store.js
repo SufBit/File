@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'; // Import configureStore from
 import { combineReducers } from 'redux'; // Optional, only if you have multiple reducers
 import { userLoginReducer } from './reducers/userReducers';
 import { userRegisterReducer } from './reducers/userReducers';
-import { noteCreateReducer, noteListReducer } from './reducers/notesReducer';
+import { noteCreateReducer, noteListReducer, noteUpdateReducer, noteDeleteReducer } from './reducers/notesReducer';
 
 // Combine reducers (if needed)
 const reducer = combineReducers({
@@ -11,6 +11,8 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     noteList: noteListReducer,
     noteCreate: noteCreateReducer,
+    noteUpdate: noteUpdateReducer, 
+    noteDelete: noteDeleteReducer,
 });
 const userInforFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
 

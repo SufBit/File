@@ -15,7 +15,7 @@ function CreateNote() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Updated for React Router v6
-
+  
   const noteCreate = useSelector((state) => state.noteCreate);
   const { loading, error, note } = noteCreate;
 
