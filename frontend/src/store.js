@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'; // Import configureStore from Redux Toolkit
 import { combineReducers } from 'redux'; // Optional, only if you have multiple reducers
 import { userLoginReducer } from './reducers/userReducers';
-import { userRegisterReducer } from './reducers/userReducers';
+import { userRegisterReducer , userUpdateReducer} from './reducers/userReducers';
 import { noteCreateReducer, noteListReducer, noteUpdateReducer, noteDeleteReducer } from './reducers/notesReducer';
 
 // Combine reducers (if needed)
@@ -9,6 +9,7 @@ const reducer = combineReducers({
     // Add your reducers here, e.g., exampleReducer: exampleSlice.reducer
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
+    userUpdate: userUpdateReducer,
     noteList: noteListReducer,
     noteCreate: noteCreateReducer,
     noteUpdate: noteUpdateReducer, 
