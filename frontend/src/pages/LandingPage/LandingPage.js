@@ -7,15 +7,15 @@ import { useNavigate } from 'react-router-dom'
 
 const LandingPage = () => {
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     const userInfo = localStorage.getItem('userInfo')
-    //     if(userInfo){
-    //         navigate('/mynotes')
-    //     }    
-    // }, [navigate]);
+        const userInfo = localStorage.getItem('userInfo')
+        if(userInfo){
+            navigate('/mynotes')
+        }    
+    }, [navigate]);
 
   return (
     <div className='main'>

@@ -9,6 +9,7 @@ import RegisterPage from './pages/RegisterPage/RegisterPage.js';
 import CreateNote from './pages/CreateNote/CreateNote.js';
 import SingleNote from './pages/CreateNote/SingleNote.js';
 import { useState } from 'react';
+import ProfileScreen  from './pages/ProfileScreen/profileScreen.js';
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
             <Route path = '/register' element={<RegisterPage/>}/>
             <Route path = '/createnote' element={<CreateNote/>}/>
             <Route path = '/note/:id' element={<SingleNote/>}/> 
+            <Route path = '/profile' element={<ProfileScreen></ProfileScreen>}/>
             <Route path = '/mynotes' element={<MyNotes search= {search}/>}/>
           </Routes>
         </main>

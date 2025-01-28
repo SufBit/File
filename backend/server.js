@@ -1,10 +1,14 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const notes = require('./data/notes');
-const connectDB = require('./config/db');
-const userRoutes = require('./routes/userRoutes');
-const notesRoutes = require('./routes/notesRoutes');
-const {notFound, errorHandler} = require('./middlewares/errorMiddleware');
+import express from 'express';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
+import userRoutes from './routes/userRoutes.js';
+import notesRoutes from './routes/notesRoutes.js';
+import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 dotenv.config();
@@ -21,6 +25,22 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', userRoutes);
 app.use('/api/notes', notesRoutes);
+
+// Deployment ---------------------
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'frontend/build')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    });
+} else {
+    app.get('/', (req, res) => {
+        res.send('API is running...');
+    });
+}
+
+// Deployment ---------------------
 
 app.use(notFound);
 app.use(errorHandler);
