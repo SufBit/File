@@ -24,11 +24,19 @@ export const Header = ({setSearch}) => {
     navigate('/');
   }
 
+  const handleMyNotesClick = (e) => {
+    if (!userInfo) {
+      e.preventDefault(); // Prevent the default link behavior
+      navigate('/login'); // Redirect to the login page
+    }
+  };
+
+
   return (
     <Navbar bg ="primary" expand="lg" variant="dark" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand style={customStyles}>
-          <Link to='/'>Notes-Taker</Link>
+          <Link to={userInfo ? "/mynotes" : "/"}>Notes-Taker</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -48,10 +56,10 @@ export const Header = ({setSearch}) => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="/mynotes" style={customStyles}>My Notes</Nav.Link>
+            <Nav.Link href="/mynotes" style={customStyles} onClick={handleMyNotesClick}>My Notes</Nav.Link>
             {userInfo ? (
             <NavDropdown title={<span style={customStyles} > {userInfo ? userInfo.name : 'Profile'}</span>} id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">My Profile</NavDropdown.Item>
+              <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={logoutHandler} href="#action5">
                 Logout
