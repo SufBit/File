@@ -7,7 +7,8 @@
     "start": "nodemon backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run start\" \"npm run client\""
+    "dev": "concurrently \"npm run start\" \"npm run client\"",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Sufyan Arshad",
   "license": "ISC",
